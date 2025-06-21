@@ -7,6 +7,8 @@ Routing decisions were central to this setup. For the public subnet, a custom ro
 
 Security was layered at both the instance and subnet level. Security Groups acted as virtual firewalls, managing rules for specific resources. For instance, public web servers allowed HTTP and SSH access from any IP, whereas private servers accepted traffic only from trusted internal sources. At the subnet level, custom Network ACLs were introduced using a “deny by default” approach. Initially blocking all traffic, these ACLs required explicit rules for allowed traffic, offering broader control and better protection for sensitive workloads.
 
+However, manually configuring subnets, route tables and security groups can be very time consuming. This time, the goal was to use the VPC resource map to visually represent the desired VPC setup.
+
 The distinction between public and private subnets was intentionally maintained. Public subnets hosted EC2 instances requiring global access, such as web servers, while private subnets sheltered backend systems from direct exposure. To facilitate access and manage servers, SSH was enabled using encrypted key pairs in .pem format. This safeguarded login credentials and followed best practices for remote administration.
 
 Server deployment followed strict network policies. Public instances were associated with permissive security groups to support web traffic. Private servers operated within more restrictive security groups, and their communication was confined to specific internal IP ranges and VPC components. These networking and security decisions ensured that resources were both functional and resilient against common attack vectors.
