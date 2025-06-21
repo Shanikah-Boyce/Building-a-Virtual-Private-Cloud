@@ -13,6 +13,9 @@ The distinction between public and private subnets was intentionally maintained.
 
 Server deployment followed strict network policies. Public instances were associated with permissive security groups to support web traffic. Private servers operated within more restrictive security groups, and their communication was confined to specific internal IP ranges and VPC components. These networking and security decisions ensured that resources were both functional and resilient against common attack vectors.
 
+In order to establish a direct connection between two VPC, a VPC peering connection was created. A peering connection lets VPCs and their resources route traffic between them using their private IP addresses. Without a peering connection, data transfers between VPCs would use resources' public address - meaning VPCs have to communicate over the public internet. This new updated route table directs traffic bound for VPC 2 to your peering connection and vise vera. In order to connect to the server using EC2 Instance Connect, an Elastic IP address was assigned. This is because using EC2 Instance Connect connects to your server over the internet by default. 
+
+
 Overall, this project not only demonstrates a grasp of AWS networking fundamentals, but also reflects an understanding of real-world best practices in cloud security and infrastructure design. It delivers a blueprint for building scalable, secure VPCs tailored to the needs of modern businesses, all while reinforcing core cloud principles such as least privilege, segmentation, and traffic control.
 
 Future Improvements
