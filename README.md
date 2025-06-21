@@ -3,11 +3,11 @@ In a world where cloud computing powers everything from financial institutions t
 
 To begin, a custom VPC was built with carefully defined IP ranges and both public and private subnets. An Internet Gateway was attached to handle outbound internet access for public resources, while private subnets remained isolated behind a NAT Gateway. This separation reinforces core cloud design patterns by controlling which resources are exposed to the internet and which remain internal.
 
-Routing decisions were central to this setup. For the public subnet, a custom route table ensured that all outbound traffic (0.0.0.0/0) was directed through the Internet Gateway, enabling external communication. In contrast, private subnet traffic was routed through a NAT Gateway, enabling secure outbound access without making those resources publicly accessible.
+Routing decisions were central to this setup. For the public subnet, a custom route table ensured that all outbound traffic (0.0.0.0/0) was directed through the Internet Gateway, enabling external communication. _In contrast, private subnet traffic was routed through a NAT Gateway, enabling secure outbound access without making those resources publicly accessible_.
 
 Security was layered at both the instance and subnet level. Security Groups acted as virtual firewalls, managing rules for specific resources. For instance, public web servers allowed HTTP and SSH access from any IP, whereas private servers accepted traffic only from trusted internal sources. At the subnet level, custom Network ACLs were introduced using a “deny by default” approach. Initially blocking all traffic, these ACLs required explicit rules for allowed traffic, offering broader control and better protection for sensitive workloads.
 
-However, manually configuring subnets, route tables and security groups can be very time consuming. This time, the goal was to use the VPC resource map to visually represent the desired VPC setup.
+However, manually configuring subnets, route tables and security groups can be very time consuming. This time, the goal was to use the VPC resource map to visually represent the desired network. It provides a clear view of how components connect and interact, making it easier to design, manage and troubleshoot without digging through configurations.
 
 The distinction between public and private subnets was intentionally maintained. Public subnets hosted EC2 instances requiring global access, such as web servers, while private subnets sheltered backend systems from direct exposure. To facilitate access and manage servers, SSH was enabled using encrypted key pairs in .pem format. This safeguarded login credentials and followed best practices for remote administration. 
 
