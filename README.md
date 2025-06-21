@@ -9,8 +9,11 @@ Security was layered at both the instance and subnet level. Security Groups acte
 
 However, manually configuring subnets, route tables and security groups can be very time consuming. This time, the goal was to use the VPC resource map to visually represent the desired VPC setup.
 
-The distinction between public and private subnets was intentionally maintained. Public subnets hosted EC2 instances requiring global access, such as web servers, while private subnets sheltered backend systems from direct exposure. To facilitate access and manage servers, SSH was enabled using encrypted key pairs in .pem format. This safeguarded login credentials and followed best practices for remote administration.
+The distinction between public and private subnets was intentionally maintained. Public subnets hosted EC2 instances requiring global access, such as web servers, while private subnets sheltered backend systems from direct exposure. To facilitate access and manage servers, SSH was enabled using encrypted key pairs in .pem format. This safeguarded login credentials and followed best practices for remote administration. 
 
 Server deployment followed strict network policies. Public instances were associated with permissive security groups to support web traffic. Private servers operated within more restrictive security groups, and their communication was confined to specific internal IP ranges and VPC components. These networking and security decisions ensured that resources were both functional and resilient against common attack vectors.
 
 Overall, this project not only demonstrates a grasp of AWS networking fundamentals, but also reflects an understanding of real-world best practices in cloud security and infrastructure design. It delivers a blueprint for building scalable, secure VPCs tailored to the needs of modern businesses, all while reinforcing core cloud principles such as least privilege, segmentation, and traffic control.
+
+Future Improvements
+- While using a single private key to access both the private and public servers simplified setup in this scenario, it also introduces security risks. Anyone who obtains that key can gain access to all connected instances, which makes protecting the private key absolutely critical.
