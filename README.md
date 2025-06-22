@@ -20,3 +20,6 @@ Overall, this project not only demonstrates a grasp of AWS networking fundamenta
 
 Future Improvements
 - While using a single private key to access both the private and public servers simplified setup in this scenario, it also introduces security risks. Anyone who obtains that key can gain access to all connected instances, which makes protecting the private key absolutely critical.
+
+conlusion
+This dual layer takes security to the next level as traffic must pass through multiple checks, which reduces the chances of unwanted access. 
