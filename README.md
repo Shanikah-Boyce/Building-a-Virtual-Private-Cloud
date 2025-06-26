@@ -6,7 +6,13 @@ In an era where cloud computing powers everything from financial institutions to
 
 ### VPC Architecture and Core Networking
 
-The VPC was deployed in the **North Virginia (us-east-1) region** using a `10.0.0.0/16` IPv4 CIDR block. It included one **public subnet** (`10.0.0.0/24`) and one **private subnet** (`10.0.1.0/24`). An **Internet Gateway** was attached to facilitate outbound internet traffic for resources in the public subnet, while the private subnet remained isolated behind a **NAT Gateway**. This setup enforced a common best practice in cloud design by separating public-facing services from internal systems.
+The VPC was deployed in the North Virginia (us-east-1) region using the IPv4 CIDR block 10.0.0.0/16. It included two subnets: a public subnet (10.0.0.0/24) and a private subnet (10.0.1.0/24). These subnets were used to group resources with similar access requirements.
+
+To enable internet access for resources in the public subnet, the option to auto-assign public IPv4 addresses was enabled. This ensures that any EC2 instance launched in the public subnet automatically receives a public IP address, eliminating the need for manual assignment.
+
+An Internet Gateway was attached to the VPC to allow outbound internet connectivity for the public subnet. In contrast, the private subnet was configured behind a NAT Gateway, providing internet access for internal resources while keeping them inaccessible from the public internet.
+
+This architecture follows cloud best practices by clearly separating public-facing components from internal systems.
 
 **Routing decisions** were central to this setup. A custom route table for the public subnet ensured outbound traffic (`0.0.0.0/0`) flowed through the Internet Gateway, while the private subnet used a separate route table directing traffic through the NAT Gateway. This allowed internal resources to access the internet securely without exposing them to inbound connections from external sources.
 
