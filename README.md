@@ -5,7 +5,7 @@ In an era where cloud computing powers everything from financial institutions to
 
 ### VPC Architecture and Core Networking
 
-The VPC was deployed in the North Virginia (us-east-1) region using the IPv4 CIDR block 10.0.0.0/16. It included two subnets: a public subnet (10.0.0.0/24) and a private subnet (10.0.1.0/24). These subnets were used to group resources with similar access requirements.
+VPC 1 was deployed in the North Virginia (us-east-1) region using the IPv4 CIDR block 10.0.0.0/16. It included two subnets: a public subnet (10.0.0.0/24) and a private subnet (10.0.1.0/24). These subnets were used to group resources with similar access requirements.
 
 To enable internet access for resources in the public subnet, the option to auto-assign public IPv4 addresses was enabled. This ensures that any EC2 instance launched in the public subnet automatically receives a public IP address, eliminating the need for manual assignment.
 
@@ -23,7 +23,11 @@ Security was implemented at both the instance and subnet levels. **Security Grou
 Server deployment aligned with subnet responsibilities. **Public EC2 instances** served internet-facing applications, while **private EC2 instances** hosted backend workloads with no external exposure. SSH access was configured using **encrypted `.pem` key pairs** to ensure secure authentication in line with best practices for cloud-hosted servers.
 
 ---
+### Private Connectivity with VPC Peering
+To test a feature called VPC peering which allows instances in each VPC to communicate using private IPs, thus eliminating the need to traverse the public internet, the tool VPC resource map was used to create 2 VPC (10.1.0.0/16 and 10.2.0.0/16) that clearly shows the visual relationship between subnets, gateways and route tables. This visual approach reduced configuration errors and made it easier to troubleshoot issues. 
+Once the peering request was accepted, route tables in both VPCs were updated to permit bi-directional traffic flow. Connectivity between EC2 instances was verified using **EC2 Instance Connect**, replacing the need for manual SSH key handling. Connectivity tests, such as `ping -c 5` and SSH commands, confirmed successful traffic flow through the peering link.
 
+---
 ### Secure S3 Communication with VPC Endpoints
 
 To demonstrate secure S3 operations, a temporary access key was generated for tasks like listing buckets, viewing contents, and uploading a file. However, this project emphasizes that in real-world scenarios, **attaching an IAM role to the EC2 instance is a more secure and scalable approach**.
@@ -32,12 +36,7 @@ Since EC2 instances communicate with services like S3 over the public internet b
 
 ---
 
-### Private Connectivity with VPC Peering
 
-To test a feature called VPC peering which allows instances in each VPC to communicate using private IPs, thus eliminating the need to traverse the public internet, the tool VPC resource map was used to create 2 VPC that clearly shows the visual relationship between subnets, gateways and route tables. This visual approach reduced configuration errors and made it easier to troubleshoot issues. 
-Once the peering request was accepted, route tables in both VPCs were updated to permit bi-directional traffic flow. Connectivity between EC2 instances was verified using **EC2 Instance Connect**, replacing the need for manual SSH key handling. Connectivity tests, such as `ping -c 5` and SSH commands, confirmed successful traffic flow through the peering link.
-
----
 
 ### Network Monitoring and Analysis
 
