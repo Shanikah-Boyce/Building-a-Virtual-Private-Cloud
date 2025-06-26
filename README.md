@@ -41,8 +41,9 @@ Since EC2 instances communicate with services like S3 over the public internet b
 
 
 ### Network Monitoring and Analysis
+To monitor network activity, VPC Flow Logs were enabled on the public subnet to capture traffic data—specifically, ping communication between the peered instances. These logs were stored in Amazon CloudWatch within a dedicated log group for the VPC. Logging was configured at one-minute intervals and recorded both accepted and rejected traffic.
 
-For monitoring, **VPC Flow Logs** were enabled to track network activity. Logs were stored in Amazon **CloudWatch** within a custom log group dedicated to the VPC. The logging interval was configured to one minute and included all accepted and rejected traffic. **CloudWatch Log Insights** was used to analyze the captured data, providing visibility into source and destination IPs, bytes transferred, ports, and traffic outcomes. This data supported diagnostics and performance tuning across the network.
+CloudWatch Log Insights was then used to analyze the captured flow logs, offering visibility into source and destination IP addresses, ports, bytes transferred, and traffic outcomes. Using the query "Top 10 byte transfers by source and destination IP addresses", I was able to identify which IP pairs transferred the most data. This insight was instrumental in diagnosing issues and optimizing network performance.
 
 ---
 
