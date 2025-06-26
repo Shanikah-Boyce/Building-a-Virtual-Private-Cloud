@@ -2,7 +2,6 @@
 
 In an era where cloud computing powers everything from financial institutions to entertainment giants, **secure and scalable network design** has become non-negotiable. This project showcases the creation and hardening of a customized Amazon Virtual Private Cloud (VPC)—a foundational skill for anyone working in cloud architecture today. Unlike AWS's default VPC, which simplifies early experimentation, this project focuses on **deliberate configuration choices that mirror real-world demands** such as regulatory compliance, granular traffic segmentation, and tightly controlled access.
 
----
 
 ### VPC Architecture and Core Networking
 
@@ -16,9 +15,6 @@ This architecture follows cloud best practices by clearly separating public-faci
 
 **Routing decisions** were central to this setup. A custom route table for the public subnet ensured outbound traffic (`0.0.0.0/0`) flowed through the Internet Gateway, while the private subnet used a separate route table directing traffic through the NAT Gateway. This allowed internal resources to access the internet securely without exposing them to inbound connections from external sources.
 
-To simplify the deployment and management of network components, a **VPC resource map** was used to plan and visualize relationships between subnets, gateways, route tables, and instances. This visual approach reduced configuration errors and made it easier to troubleshoot issues.
-
----
 
 ### Layered Security Implementation
 
@@ -38,7 +34,8 @@ Since EC2 instances communicate with services like S3 over the public internet b
 
 ### Private Connectivity with VPC Peering
 
-To enable private communication between separate VPCs, a **VPC peering connection** was established. This allowed instances in each VPC to communicate using private IPs, eliminating the need to traverse the public internet. Once the peering request was accepted, route tables in both VPCs were updated to permit bi-directional traffic flow. Connectivity between EC2 instances was verified using **EC2 Instance Connect**, replacing the need for manual SSH key handling. Connectivity tests, such as `ping -c 5` and SSH commands, confirmed successful traffic flow through the peering link.
+To test a feature called VPC peering which allows instances in each VPC to communicate using private IPs, thus eliminating the need to traverse the public internet, the tool VPC resource map was used to create 2 VPC that clearly shows the visual relationship between subnets, gateways and route tables. This visual approach reduced configuration errors and made it easier to troubleshoot issues. 
+Once the peering request was accepted, route tables in both VPCs were updated to permit bi-directional traffic flow. Connectivity between EC2 instances was verified using **EC2 Instance Connect**, replacing the need for manual SSH key handling. Connectivity tests, such as `ping -c 5` and SSH commands, confirmed successful traffic flow through the peering link.
 
 ---
 
