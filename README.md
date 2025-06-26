@@ -27,6 +27,45 @@ Through this project, I demonstrated how to design a secure and operationally so
 
 ..............................................
 
+editing
+# 🔐 Secure AWS VPC Architecture (Internet-Isolated Backend)
+
+This project showcases the design and deployment of a secure Amazon Virtual Private Cloud (VPC) architecture built entirely within the North Virginia (`us-east-1`) region. The VPC used the CIDR block `10.0.0.0/16` and was segmented into two subnets: a public subnet (`10.0.0.0/24`) for internet-facing workloads and a private subnet (`10.0.1.0/24`) reserved for internal-only services. Public EC2 instances received auto-assigned IPv4 addresses and were connected to an Internet Gateway, while the private subnet remained purposefully isolated, with no external routing configuration to ensure a zero-exposure environment.
+
+---
+
+## 🛡️ Network Security
+
+Security controls were applied at both the instance and subnet levels. Security Groups were configured to allow limited access to public-facing services like HTTP and SSH, while internal EC2 instances accepted traffic only from approved internal sources. Subnet-level security was enforced using Network ACLs that adopted a deny-by-default posture, requiring explicit allow rules for permitted traffic. All public-facing EC2 instances were accessed using encrypted `.pem` key pairs, while internal instances were designed for complete isolation.
+
+---
+
+## 🔄 VPC Peering
+
+To enable cross-VPC communication, VPC peering was configured between two additional VPCs with CIDR blocks `10.1.0.0/16` and `10.2.0.0/16`. Using the AWS VPC Resource Map for visualization, the peering connection was created and route tables were updated to support private IP communication between environments. EC2 Instance Connect and `ping` were used to verify the connection, ensuring that internal communication occurred securely without relying on public internet routes.
+
+---
+
+## ☁️ Private S3 Access
+
+The private subnet was also configured to access Amazon S3 through a Gateway Endpoint. This allowed S3 traffic to remain within the AWS private network and eliminated the need for public routing. A bucket policy using the `aws:sourceVpce` condition was applied to ensure that only requests coming from the defined endpoint were granted access, effectively blocking any unauthorized or console-based access from outside the VPC.
+
+---
+
+## 📈 Monitoring and Visibility
+
+To monitor traffic activity, VPC Flow Logs were enabled on the public subnet and streamed to Amazon CloudWatch. These logs captured both accepted and rejected traffic events, enabling detailed analysis through CloudWatch Log Insights. Sample queries were used to identify the top byte transfers between EC2 instances, providing insight into traffic flows and confirming the success of inter-VPC communication.
+
+---
+
+## ✅ Outcome
+
+This project demonstrates a robust, security-first approach to cloud network design. By isolating private resources, using internal routing strategies, implementing strict policy-based access to storage, and enabling end-to-end visibility, it reflects best practices in scalable, production-ready AWS networking.
+
+
+
+
+...............................................................
 In an era where cloud computing powers everything from financial institutions to entertainment giants, **secure and scalable network design** has become non-negotiable. This project showcases the creation and hardening of a customized Amazon Virtual Private Cloud (VPC)—a foundational skill for anyone working in cloud architecture today. Unlike AWS's default VPC, which simplifies early experimentation, this project focuses on **deliberate configuration choices that mirror real-world demands** such as regulatory compliance, granular traffic segmentation, and tightly controlled access.
 
 
