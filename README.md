@@ -1,4 +1,31 @@
+edit
+...
+Absolutely—here's your refined portfolio write-up with all NAT Gateway references removed and the focus fully placed on isolation, segmentation, and secure design choices:
 
+---
+
+### **Designing a Secure and Segmented VPC Architecture on AWS**
+
+This project showcases the construction of a custom Amazon Virtual Private Cloud (VPC) designed to enforce strict security boundaries, internal resource isolation, and granular control over network traffic—all while avoiding unnecessary exposure to the public internet. The architecture reflects best practices in cloud security, including layered defenses, subnet separation, and private service access.
+
+Built in the North Virginia (us-east-1) region, the VPC used the 10.0.0.0/16 CIDR block and was divided into a public subnet (10.0.0.0/24) and a private subnet (10.0.1.0/24). Public EC2 instances were configured with auto-assigned public IP addresses and linked to an Internet Gateway to enable external connectivity. The private subnet was purposefully isolated, designed to host backend services that required no internet access.
+
+Routing configurations ensured that public traffic flowed through the Internet Gateway, while the private subnet remained fully enclosed with no route to the internet. This segregation supported a clean divide between externally accessible systems and sensitive internal workloads.
+
+Security controls were layered and tightly scoped. Instance-level **Security Groups** permitted only necessary access—such as HTTP and SSH from trusted IP ranges—while **Network ACLs** at the subnet level followed a deny-by-default strategy, requiring explicit rule creation to permit traffic. This dual-layered approach ensured fine-grained access management across both individual resources and broader subnet boundaries.
+
+Server deployment mirrored the logical separation of the network. Public-facing EC2 instances ran internet-accessible services with encrypted `.pem` key-based SSH access, while private EC2 instances ran backend processes isolated from public exposure. This structural decision emphasized the principle of least privilege and minimized unnecessary surface area for attack.
+
+The project also included **VPC peering** to enable communication across two additional VPCs (10.1.0.0/16 and 10.2.0.0/16). Using the AWS VPC Resource Map, peering was configured and route tables updated to allow seamless private IP communication between environments. Verification through `ping` and EC2 Instance Connect confirmed successful connectivity over the peering connection, enabling inter-VPC collaboration without traffic traversing the public internet.
+
+For secure object storage access, the private subnet interacted with Amazon S3 via a **Gateway Endpoint**, ensuring that all S3 traffic remained within the AWS network. A bucket policy incorporating the `aws:sourceVpce` condition limited access to requests originating from the VPC endpoint, enforcing private access and preventing unauthorized use through other channels.
+
+Network visibility was achieved through **VPC Flow Logs**, which were enabled on the public subnet and pushed to Amazon CloudWatch. These logs captured both accepted and rejected traffic, supporting continuous monitoring and security auditing. Using CloudWatch Log Insights, traffic patterns were analyzed to identify the top data transfers between IPs and validate peering communication.
+
+Through this project, I demonstrated how to design a secure and operationally sound network architecture in AWS without exposing internal resources unnecessarily. The combination of subnet isolation, peering, endpoint policies, and layered access control resulted in a hardened cloud environment aligned with modern enterprise expectations.
+
+
+..............................................
 
 In an era where cloud computing powers everything from financial institutions to entertainment giants, **secure and scalable network design** has become non-negotiable. This project showcases the creation and hardening of a customized Amazon Virtual Private Cloud (VPC)—a foundational skill for anyone working in cloud architecture today. Unlike AWS's default VPC, which simplifies early experimentation, this project focuses on **deliberate configuration choices that mirror real-world demands** such as regulatory compliance, granular traffic segmentation, and tightly controlled access.
 
