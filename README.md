@@ -28,12 +28,15 @@ Combining SGs with NACLs created a layered model that reduced the likelihood of 
 
 ## 🔄 VPC Peering
 To enable secure communication across isolated environments, VPC peering was configured between NovaGrid-1-VPC (10.1.0.0/16) and NovaGrid-2-VPC (10.2.0.0/16). This allowed instances in both networks to communicate via private IPs, without routing traffic over the public internet.
+<img width="919" height="583" alt="Screenshot 2025-04-24 150942" src="https://github.com/user-attachments/assets/59e3195c-07a4-4789-9f06-c9a18b92f54e" />
 
 VPC peering was intentionally chosen over options like AWS Transit Gateway because it offered simpler configuration and lower cost for a two-VPC architecture. It met the performance and connectivity requirements without introducing unnecessary complexity.
 
 NovaGrid-2-VPC included a public subnet (10.2.0.0/24) and a private subnet (10.2.1.0/24). To maintain consistent access control, its security groups and NACLs mirrored those of NovaGrid-1. This duplication ensured predictable, uniform security behavior across the network.
 
 Routing tables in both VPCs were updated after peering to enable bidirectional internal traffic, facilitating seamless communication between services, critical for shared backend operations and service discovery.
+<img width="664" height="438" alt="Screenshot 2025-04-24 152819" src="https://github.com/user-attachments/assets/11371ced-ae04-4e7f-b727-fe1ae9907e4a" />
+
 
 ## ☁️ Private S3 Access
 For workloads in the private subnet, access to Amazon S3 was enabled using a Gateway Endpoint, eliminating the need for NAT Gateways or public IPs. This ensured all S3 traffic remained on the AWS backbone, avoiding exposure to the public internet.
