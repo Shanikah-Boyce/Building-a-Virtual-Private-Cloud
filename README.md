@@ -70,7 +70,12 @@ The final configuration lowered risk exposure, eliminated costs associated with 
 ## 📈 Monitoring and Visibility
 VPC Flow Logs were enabled on the public subnet and streamed to Amazon CloudWatch. These logs captured accepted and rejected traffic, offering critical insights into network behavior at one-minute intervals.
 
-Using CloudWatch Log Insights, queries were executed to identify the top 10 EC2 data transfers by byte size. This analysis confirmed that traffic patterns aligned with expected use cases and helped validate the architecture’s effectiveness.
+Using CloudWatch Log Insights, queries were executed to identify the top 10 data transfers by byte size. 
+<img width="1328" height="528" alt="Screenshot 2025-07-02 123804" src="https://github.com/user-attachments/assets/3ee357e3-7793-4c54-a7cd-a202c8bd4e11" />
+
+This analysis confirmed that traffic patterns aligned with expected use cases and helped validate the architecture’s effectiveness.
+<img width="969" height="611" alt="Screenshot 2025-07-02 123836" src="https://github.com/user-attachments/assets/957774a4-466a-467e-9f0a-741c7add5f65" />
+
 
 Monitoring wasn’t treated as an afterthought—it was foundational to the design. Visibility into traffic patterns ensured easier troubleshooting, compliance reporting, and performance tuning.
 
