@@ -51,15 +51,20 @@ Routing tables in both VPCs were updated after peering to enable bidirectional i
 
 
 ## ☁️ Private S3 Access
-For workloads in the private subnet, access to Amazon S3 was enabled using a Gateway Endpoint, eliminating the need for NAT Gateways or public IPs. This ensured all S3 traffic remained on the AWS backbone, avoiding exposure to the public internet.
+For workloads operating within a private subnet, Amazon S3 access was secured through a VPC Gateway Endpoint. This configuration removed the need for NAT Gateways or public IPs, ensuring that all traffic to S3 remained within AWS’s internal infrastructure and did not traverse the public internet.
 
-A strict bucket policy using the aws:sourceVpce condition was applied to allow access only from the designated VPC endpoint. 
+To enforce a zero-trust model, a strict S3 bucket policy using the aws:SourceVpce condition was implemented. This guaranteed that only requests from the approved VPC Endpoint were allowed, effectively blocking other access paths, including the AWS Management Console.
 <img width="960" height="584" alt="Screenshot 2025-04-25 152827" src="https://github.com/user-attachments/assets/7c1cf647-8220-4d00-a007-1e46d7d5fd9b" />
 
-This effectively blocked any unintended access, even from AWS Management Console logins, reinforcing a zero-trust posture for data storage.
 <img width="1204" height="570" alt="Screenshot 2025-04-25 153329" src="https://github.com/user-attachments/assets/3d23ca16-ec38-483f-95b7-0a3ccd090439" />
 
-This design choice reduced both cost and complexity while increasing security, making it ideal for applications handling sensitive data.
+To test the effectiveness of the security controls, the VPC Endpoint Policy was briefly modified to deny all access. Since the bucket was only reachable via the gateway, this immediately disabled access across all interfaces: AWS CLI, SDKs, and the Console, for workloads in the private subnet. This confirmed that the configuration was properly enforced and could be quickly shut down when needed.
+
+<img width="1329" height="465" alt="Screenshot 2025-04-25 155454" src="https://github.com/user-attachments/assets/737b325d-ff39-4514-875d-de845b8bb74d" />
+
+<img width="1346" height="97" alt="Screenshot 2025-04-25 154031" src="https://github.com/user-attachments/assets/68a6a4b2-28c2-48ce-8e1d-4f3d6782f6bb" />
+
+
 
 ## 📈 Monitoring and Visibility
 VPC Flow Logs were enabled on the public subnet and streamed to Amazon CloudWatch. These logs captured accepted and rejected traffic, offering critical insights into network behavior at one-minute intervals.
