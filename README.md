@@ -35,7 +35,7 @@ VPC peering was intentionally chosen over options like AWS Transit Gateway becau
 NovaGrid-2-VPC included a public subnet (10.2.0.0/24) and a private subnet (10.2.1.0/24). To maintain consistent access control, its security groups and NACLs mirrored those of NovaGrid-1. This duplication ensured predictable, uniform security behavior across the network.
 
 Routing tables in both VPCs were updated after peering to enable bidirectional internal traffic, facilitating seamless communication between services, critical for shared backend operations and service discovery.
-<img width="1129" height="454" alt="Screenshot 2025-07-01 131239" src="https://github.com/user-attachments/assets/5757b054-270a-4a31-86ac-41f8d3929a75" />
+<img width="1129" height="454" alt="Screenshot 2025-07-01 131239" src="https://github.com/user-attachments/assets/7f25796c-e3d5-47a1-b6d3-c44a498e3c46" />
 
 
 <img width="664" height="438" alt="Screenshot 2025-04-24 152819" src="https://github.com/user-attachments/assets/11371ced-ae04-4e7f-b727-fe1ae9907e4a" />
