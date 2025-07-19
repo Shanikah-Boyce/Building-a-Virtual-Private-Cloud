@@ -53,8 +53,9 @@ Routing tables in both VPCs were updated after peering to enable bidirectional i
 ## ☁️ Private S3 Access
 For workloads operating within a private subnet, Amazon S3 access was secured through a VPC Gateway Endpoint. This configuration removed the need for NAT Gateways or public IPs, ensuring that all traffic to S3 remained within AWS’s internal infrastructure and did not traverse the public internet.
 
-To enforce a zero-trust model, a strict S3 bucket policy using the aws:SourceVpce condition was implemented. This guaranteed that only requests from the approved VPC Endpoint were allowed, effectively blocking other access paths, including the AWS Management Console.
 <img width="960" height="584" alt="Screenshot 2025-04-25 152827" src="https://github.com/user-attachments/assets/7c1cf647-8220-4d00-a007-1e46d7d5fd9b" />
+
+To enforce a zero-trust model, a strict S3 bucket policy using the aws:SourceVpce condition was implemented. This guaranteed that only requests from the approved VPC Endpoint were allowed, effectively blocking other access paths, including the AWS Management Console.
 
 <img width="1204" height="570" alt="Screenshot 2025-04-25 153329" src="https://github.com/user-attachments/assets/3d23ca16-ec38-483f-95b7-0a3ccd090439" />
 
@@ -64,7 +65,7 @@ To test the effectiveness of the security controls, the VPC Endpoint Policy was 
 
 <img width="1346" height="97" alt="Screenshot 2025-04-25 154031" src="https://github.com/user-attachments/assets/68a6a4b2-28c2-48ce-8e1d-4f3d6782f6bb" />
 
-
+The final configuration lowered risk exposure, eliminated costs associated with NAT Gateways, and streamlined traffic handling. This made it an ideal solution for protecting sensitive workloads in environments that demand strict network control.
 
 ## 📈 Monitoring and Visibility
 VPC Flow Logs were enabled on the public subnet and streamed to Amazon CloudWatch. These logs captured accepted and rejected traffic, offering critical insights into network behavior at one-minute intervals.
