@@ -53,7 +53,11 @@ Routing tables in both VPCs were updated after peering to enable bidirectional i
 ## ☁️ Private S3 Access
 For workloads in the private subnet, access to Amazon S3 was enabled using a Gateway Endpoint, eliminating the need for NAT Gateways or public IPs. This ensured all S3 traffic remained on the AWS backbone, avoiding exposure to the public internet.
 
-A strict bucket policy using the aws:sourceVpce condition was applied to allow access only from the designated VPC endpoint. This effectively blocked any unintended access, even from AWS Management Console logins, reinforcing a zero-trust posture for data storage.
+A strict bucket policy using the aws:sourceVpce condition was applied to allow access only from the designated VPC endpoint. 
+<img width="960" height="584" alt="Screenshot 2025-04-25 152827" src="https://github.com/user-attachments/assets/7c1cf647-8220-4d00-a007-1e46d7d5fd9b" />
+
+This effectively blocked any unintended access, even from AWS Management Console logins, reinforcing a zero-trust posture for data storage.
+<img width="1204" height="570" alt="Screenshot 2025-04-25 153329" src="https://github.com/user-attachments/assets/3d23ca16-ec38-483f-95b7-0a3ccd090439" />
 
 This design choice reduced both cost and complexity while increasing security, making it ideal for applications handling sensitive data.
 
