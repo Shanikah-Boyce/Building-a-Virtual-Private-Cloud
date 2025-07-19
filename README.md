@@ -77,9 +77,7 @@ Using CloudWatch Log Insights, queries were executed to identify the top 10 data
 <img width="1328" height="528" alt="Screenshot 2025-07-02 123804" src="https://github.com/user-attachments/assets/3ee357e3-7793-4c54-a7cd-a202c8bd4e11" />
 
 This analysis confirmed that traffic patterns aligned with expected use cases and helped validate the architecture’s effectiveness.
-<img width="1314" height="567" alt="image" src="https://github.com/user-attachments/assets/db5dbab2-f6ba-4da9-8e36-3a86e195dcd2" />
-
-
+<img width="2048" height="953" alt="image" src="https://github.com/user-attachments/assets/6435035b-0119-4aa7-9e7e-795d3c6302c8" />
 
 Monitoring wasn’t treated as an afterthought—it was foundational to the design. Visibility into traffic patterns ensured easier troubleshooting, compliance reporting, and performance tuning.
 
