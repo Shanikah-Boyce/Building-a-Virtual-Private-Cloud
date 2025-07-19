@@ -26,6 +26,15 @@ Security Groups (SGs) offered a second, stateful layer of control:
 
 Combining SGs with NACLs created a layered model that reduced the likelihood of accidental exposure or overly permissive access rules.
 
+## Connectivity Testing Between EC2 Instances
+Network connectivity between Amazon EC2 instances was validated using ping and  curl commands from a public-facing EC2 instance. Successful ICMP echo replies confirmed that inbound traffic to the private subnet was permitted by the configured security groups and NACLs, demonstrating internal accessibility.
+
+The curl command to https://learn.nextwork.org/projects/aws-hosta-website-on-s3 further verified outbound internet access from the public EC2 instance, confirming the correct setup of the internet gateway, route tables, and the assignment of a public or Elastic IP address.
+
+<img width="755" height="499" alt="Screenshot 2025-04-23 170159" src="https://github.com/user-attachments/assets/9e9b04d7-08bc-48f6-a66e-a431063d5dca" />
+<img width="935" height="503" alt="Screenshot 2025-04-23 172042" src="https://github.com/user-attachments/assets/0deafb35-6920-4ff7-ace5-5ef8751486d7" />
+
+
 ## 🔄 VPC Peering
 To enable secure communication across isolated environments, VPC peering was configured between NovaGrid-1-VPC (10.1.0.0/16) and NovaGrid-2-VPC (10.2.0.0/16). This allowed instances in both networks to communicate via private IPs, without routing traffic over the public internet.
 <img width="919" height="583" alt="Screenshot 2025-04-24 150942" src="https://github.com/user-attachments/assets/59e3195c-07a4-4789-9f06-c9a18b92f54e" />
