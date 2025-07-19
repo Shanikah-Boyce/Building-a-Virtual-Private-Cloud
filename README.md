@@ -29,7 +29,7 @@ Combining SGs with NACLs created a layered model that reduced the likelihood of 
 ## Connectivity Testing Between EC2 Instances
 Network connectivity between Amazon EC2 instances was validated using ping and  curl commands from a public-facing EC2 instance. Successful ICMP echo replies confirmed that inbound traffic to the private subnet was permitted by the configured security groups and NACLs, demonstrating internal accessibility.
 
-The curl command to https://learn.nextwork.org/projects/aws-hosta-website-on-s3 further verified outbound internet access from the public EC2 instance, confirming the correct setup of the internet gateway, route tables, and the assignment of a public or Elastic IP address.
+The command curl https://learn.nextwork.org/projects/aws-host-a-website-on-s3 further verified outbound internet access from the public EC2 instance, confirming the correct setup of the internet gateway, route tables, and the assignment of a public or Elastic IP address.
 
 <img width="706" height="568" alt="image" src="https://github.com/user-attachments/assets/5b676fea-fe55-4799-91b7-00b05c76e1d0" />
 
