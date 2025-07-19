@@ -31,9 +31,11 @@ Network connectivity between Amazon EC2 instances was validated using ping and  
 
 The curl command to https://learn.nextwork.org/projects/aws-hosta-website-on-s3 further verified outbound internet access from the public EC2 instance, confirming the correct setup of the internet gateway, route tables, and the assignment of a public or Elastic IP address.
 
-<img width="601" height="567" alt="Screenshot 2025-07-01 132430" src="https://github.com/user-attachments/assets/8183bb45-be1b-4b6b-8759-90e0b2ac1a1a" />
+<img width="706" height="568" alt="image" src="https://github.com/user-attachments/assets/5b676fea-fe55-4799-91b7-00b05c76e1d0" />
 
-<img width="935" height="503" alt="Screenshot 2025-04-23 172042" src="https://github.com/user-attachments/assets/0deafb35-6920-4ff7-ace5-5ef8751486d7" />
+
+<img width="857" height="547" alt="image" src="https://github.com/user-attachments/assets/0582fdf7-d887-4bc7-8a3c-46a7fa7b25a9" />
+
 
 
 ## 🔄 VPC Peering
