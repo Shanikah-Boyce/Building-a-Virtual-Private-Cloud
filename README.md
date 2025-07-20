@@ -39,7 +39,7 @@ To accommodate growth and support additional workload isolation, a second VPC, N
 - Public Subnet (10.2.0.0/24): Designed for internet-facing resources.
 - Private Subnet (10.2.1.0/24): Reserved for backend operations.
 
-This dual-VPC design enhances both scalability and security by creating distinct boundaries between the production environment (NovaGrid-1) and non-production environments (NovaGrid-2). Isolating workloads in this way not only helps meet the scaling needs of each environment but also reduces the blast radius in case of security incidents, ensuring that any breach in one environment does not impact others.
+This dual-VPC approach enhances scalability, enforces security boundaries, and improves operational transparency. By confining production workloads to NovaGrid-1 and isolating non-production tasks within NovaGrid-2, the design minimizes cross-environment risks. Should a security incident or system failure arise, its impact remains contained to a single VPC.
 
 NovaGrid-2 inherits the security posture of NovaGrid-1, ensuring consistent network security controls across both environments.
 
