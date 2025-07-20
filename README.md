@@ -36,8 +36,14 @@ To test outbound internet access, the curl command `curl https://learn.nextwork.
 
 
 
-## 🔄 VPC Peering
-To enable secure communication across isolated environments, VPC peering is established between NovaGrid-1-VPC (10.1.0.0/16) and NovaGrid-2-VPC (10.2.0.0/16). This allows instances in both networks to communicate via private IPs, without routing traffic over the public internet.
+# 🔄 Inter-VPC Communication and Expansion
+To accommodate growth and support additional workload isolation, a second VPC—NovaGrid-2—was provisioned with the CIDR block 10.2.0.0/16. Like its predecessor, it includes:
+- Public Subnet (10.2.0.0/24): Designed for internet-facing resources.
+- Private Subnet (10.2.1.0/24): Reserved for backend operations.
+
+NovaGrid-2 inherits NovaGrid-1's security posture, ensuring policy uniformity across environments.
+
+A VPC peering connection was established between NovaGrid-1 and NovaGrid-2 to enable secure resource interaction across VPCs.
 
 <img width="919" height="583" alt="Screenshot 2025-04-24 150942" src="https://github.com/user-attachments/assets/59e3195c-07a4-4789-9f06-c9a18b92f54e" />
 
