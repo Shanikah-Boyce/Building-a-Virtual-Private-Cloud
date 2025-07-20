@@ -39,13 +39,13 @@ To accommodate growth and support additional workload isolation, a second VPC, N
 - Public Subnet (10.2.0.0/24): Designed for internet-facing resources.
 - Private Subnet (10.2.1.0/24): Reserved for backend operations.
 
+This dual-VPC design enhances both scalability and security by creating distinct boundaries between the production environment (NovaGrid-1) and non-production environments (NovaGrid-2). Isolating workloads in this way not only helps meet the scaling needs of each environment but also reduces the blast radius in case of security incidents, ensuring that any breach in one environment does not impact others.
+
 NovaGrid-2 inherits the security posture of NovaGrid-1, ensuring consistent network security controls across both environments.
 
-To enable secure, low-latency communication between the two VPCs, a VPC Peering Connection was established. This allows public instances in NovaGrid-1 and NovaGrid-2 to communicate using their private IP addresses, ensuring that traffic between them remains isolated from the public internet. Although the public subnets can route traffic to the internet via an Internet Gateway, all internal communication, especially traffic traversing the peering link, remains private and protected.
+To facilitate secure, low-latency communication between the VPCs, a VPC Peering Connection was established. This enables instances in public subnets on both sides to exchange traffic using private IP addresses, keeping internal communications shielded from the public internet. Although public subnets can initiate outbound internet traffic, all inter-VPC traffic remains private and encrypted. With bidirectional routing, both VPCs can seamlessly access shared internal resources, enhancing system resilience and integration.
 
-With routing tables updated to support bidirectional traffic, the two VPCs can now facilitate cross-VPC service discovery and integration. This setup supports a more resilient, distributed architecture while simplifying service orchestration across both VPCs.
-
-VPC Peering was chosen over AWS Transit Gateway due to its simplicity and cost-effectiveness for a smaller, two-VPC setup. While Transit Gateway provides more advanced features such as centralized routing, inter-region connectivity, and scalability for larger network topologies, it is better suited for more complex environments with multiple VPCs and regions.
+VPC Peering was selected over AWS Transit Gateway to prioritize simplicity and cost efficiency. While Transit Gateway is well-suited for large-scale, multi-VPC or cross-region architectures, VPC Peering delivers a streamlined and agile solution for a two-VPC setup. This choice supports scalable architecture growth while avoiding unnecessary complexity and expense.
 
 <img width="919" height="583" alt="Screenshot 2025-04-24 150942" src="https://github.com/user-attachments/assets/59e3195c-07a4-4789-9f06-c9a18b92f54e" />
 
