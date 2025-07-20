@@ -55,13 +55,13 @@ The decision to use VPC Peering over AWS Transit Gateway was deliberate as peeri
 ## ☁️ Private S3 Access
 For workloads operating within a private subnet, Amazon S3 access is secured through a VPC Gateway Endpoint. This configuration eliminates the need for NAT Gateways or public IPs, ensuring that all traffic to S3 remains within AWS’s internal infrastructure and does not traverse the public internet.
 
-<img width="960" height="584" alt="Screenshot 2025-04-25 152827" src="https://github.com/user-attachments/assets/7c1cf647-8220-4d00-a007-1e46d7d5fd9b" />
 
 To enforce a zero-trust model, a strict S3 bucket policy using the aws:SourceVpce condition is applied. This guarantees that only requests from the approved VPC Endpoint are allowed, effectively blocking other access paths, including the AWS Management Console.
 
-<img width="1204" height="570" alt="Screenshot 2025-04-25 153329" src="https://github.com/user-attachments/assets/3d23ca16-ec38-483f-95b7-0a3ccd090439" />
+<img src="https://github.com/user-attachments/assets/7c1cf647-8220-4d00-a007-1e46d7d5fd9b" /> 
+<img src="https://github.com/user-attachments/assets/3d23ca16-ec38-483f-95b7-0a3ccd090439" />
 
-To test the effectiveness of the security controls, the VPC Endpoint Policy is temporarily modified to deny all access. Since the bucket is only reachable via the gateway, this immediately disables access across all interfaces—AWS CLI, SDKs, and the Console, for workloads in the private subnet. This confirms that the configuration is properly enforced and can be quickly shut down when needed.
+To test the effectiveness of the security controls, the VPC Endpoint Policy is temporarily modified to deny all access. Since the bucket is only reachable via the gateway, this immediately disables access across all interfaces, AWS CLI, SDKs, and the Console, for workloads in the private subnet. This confirms that the configuration is properly enforced and can be quickly shut down when needed.
 
 <img width="1329" height="465" alt="Screenshot 2025-04-25 155454" src="https://github.com/user-attachments/assets/737b325d-ff39-4514-875d-de845b8bb74d" />
 
