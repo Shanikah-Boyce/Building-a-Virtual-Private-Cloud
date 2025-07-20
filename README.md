@@ -97,9 +97,9 @@ Each component was selected with a specific tradeoff in mind—cost, manageabili
 
 ## 🚀 Opportunities for Improvement
 ### 🔐 Restrict SSH Access
-While public EC2 instances allowed SSH from all IPv4 addresses to support EC2 Instance Connect, this represents a potential attack vector. A more secure approach would restrict SSH to known IP ranges (e.g., office VPN or a bastion host).
-
-To maintain flexibility while improving security, it’s recommended to identify the IP ranges used by EC2 Instance Connect and apply them to the security group. Alternatively, automating IP updates via AWS Lambda could provide a safer, dynamic solution.
+To enable EC2 Instance Connect, public EC2 instances are currently configured to allow SSH access from any IPv4 address. This setup removes the need for manual key management, streamlining access for administrators. However, it also significantly increases the attack surface by exposing port 22 to unrestricted traffic from the internet. A more secure configuration involves limiting SSH access to trusted IP ranges, particularly those assigned to a bastion host, which helps prevent unauthorized connections and aligns with best practices in cloud security. Identifying the IP ranges utilized by EC2 Instance Connect and applying them within security group rules improves access control. In dynamic environments, automating these IP updates using AWS Lambda and Systems Manager allows organizations to manage connectivity in a scalable, secure, and compliant manner, with minimal manual intervention.
 
 ### 👁️ Extend Internal Visibility
-Currently, Flow Logs are enabled only on the public subnet. Enabling them on the private subnet would offer deeper insight into internal (east-west) traffic. This visibility could reveal unusual patterns, detect misrouted packets, and improve overall network hygiene.
+Flow Logs are currently enabled only on the public subnet, limiting visibility into internal (east-west) traffic. This gap makes it harder to detect internal anomalies or troubleshoot access issues.
+
+Extending Flow Logs to private subnets would provide deeper insights into internal activity—surfacing unusual traffic patterns, revealing misrouted packets, and contributing to more effective network hygiene. This data can also be integrated into tools like CloudWatch Logs Insights or Amazon Athena for advanced monitoring and analytics, supporting more informed decision-making and enhancing operational oversight.
