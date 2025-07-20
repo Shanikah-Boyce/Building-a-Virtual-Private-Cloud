@@ -37,7 +37,6 @@ To test outbound internet access, the curl command `curl https://learn.nextwork.
 # 🔄 Inter-VPC Communication and Expansion
 <img src="https://github.com/user-attachments/assets/9ecad038-48f2-4efd-94e4-ac6f10a78cba"/>
 
-
 As infrastructure needs evolved, NovaGrid expanded into a dual-VPC architecture with the provisioning of NovaGrid-2 (10.2.0.0/16). This second VPC was designed to support workload separation and long-term scalability while maintaining symmetry with NovaGrid-1. It includes a public subnet (10.2.0.0/24) for internet-facing resources and a private subnet (10.2.1.0/24) for backend services requiring isolation from external exposure.
 
 <img src="https://github.com/user-attachments/assets/59e3195c-07a4-4789-9f06-c9a18b92f54e" width="700"/>
@@ -53,21 +52,25 @@ The decision to use VPC Peering over AWS Transit Gateway was deliberate as peeri
 
 
 ## ☁️ Private S3 Access
-For workloads operating within a private subnet, Amazon S3 access is secured through a VPC Gateway Endpoint. This configuration eliminates the need for NAT Gateways or public IPs, ensuring that all traffic to S3 remains within AWS’s internal infrastructure and does not traverse the public internet.
+For workloads residing in a private subnet, access to Amazon S3 is securely facilitated via a VPC Gateway Endpoint. This setup removes the need for NAT Gateways or public IPs, ensuring that all S3 traffic stays within AWS’s internal network and avoids traversing the public internet.
 
-
-To enforce a zero-trust model, a strict S3 bucket policy using the aws:SourceVpce condition is applied. This guarantees that only requests from the approved VPC Endpoint are allowed, effectively blocking other access paths, including the AWS Management Console.
+To implement a zero-trust approach, a restrictive S3 bucket policy is applied using the aws:SourceVpce condition. 
 
 <img src="https://github.com/user-attachments/assets/7c1cf647-8220-4d00-a007-1e46d7d5fd9b" /> 
+
+This ensures that only requests originating from the designated VPC Endpoint are permitted, effectively blocking all other access paths, including those through the AWS Management Console.
+
 <img src="https://github.com/user-attachments/assets/3d23ca16-ec38-483f-95b7-0a3ccd090439" />
 
-To test the effectiveness of the security controls, the VPC Endpoint Policy is temporarily modified to deny all access. Since the bucket is only reachable via the gateway, this immediately disables access across all interfaces, AWS CLI, SDKs, and the Console, for workloads in the private subnet. This confirms that the configuration is properly enforced and can be quickly shut down when needed.
+As part of a security validation exercise, the VPC Endpoint policy was temporarily set to deny all access. Since the Amazon S3 bucket is only reachable via the Gateway Endpoint, this action immediately blocked all connectivity, through AWS CLI, SDKs, and the Management Console.
+
+The goal was to confirm that if a threat actor attempted to misuse the endpoint, access could be swiftly and completely revoked. The outcome validated that the configuration enforces the zero-trust model as intended.
 
 <img width="1329" height="465" alt="Screenshot 2025-04-25 155454" src="https://github.com/user-attachments/assets/737b325d-ff39-4514-875d-de845b8bb74d" />
 
 <img width="1346" height="97" alt="Screenshot 2025-04-25 154031" src="https://github.com/user-attachments/assets/68a6a4b2-28c2-48ce-8e1d-4f3d6782f6bb" />
 
-The final configuration reduces risk exposure, eliminates costs associated with NAT Gateways, and streamlines traffic handling. This makes it an ideal solution for protecting sensitive workloads in environments that demand strict network control.
+The final configuration minimizes risk exposure, eliminates NAT Gateway overhead, and simplifies traffic management, making it a robust solution for securing sensitive workloads in environments with stringent network control requirements.
 
 ## 📈 Monitoring and Visibility
 VPC Flow Logs are enabled on the public subnet and streamed to Amazon CloudWatch. These logs capture accepted and rejected traffic, offering critical insights into network behavior at one-minute intervals.
