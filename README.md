@@ -34,24 +34,22 @@ To test outbound internet access, the curl command `curl https://learn.nextwork.
 
 <img width="857" height="547" alt="image" src="https://github.com/user-attachments/assets/0582fdf7-d887-4bc7-8a3c-46a7fa7b25a9" />
 
-
-
 # 🔄 Inter-VPC Communication and Expansion
-To accommodate growth and support additional workload isolation, a second VPC—NovaGrid-2—was provisioned with the CIDR block 10.2.0.0/16. Like its predecessor, it includes:
+To accommodate growth and support additional workload isolation, a second VPC, NovaGrid-2, was provisioned with the CIDR block 10.2.0.0/16. Like its predecessor, it includes:
 - Public Subnet (10.2.0.0/24): Designed for internet-facing resources.
 - Private Subnet (10.2.1.0/24): Reserved for backend operations.
 
-NovaGrid-2 inherits NovaGrid-1's security posture, ensuring policy uniformity across environments.
+NovaGrid-2 inherits the security posture of NovaGrid-1, ensuring consistent network security controls across both environments.
 
-A VPC peering connection was established between NovaGrid-1 and NovaGrid-2 to enable secure resource interaction across VPCs.
+To enable secure, low-latency communication between the two VPCs, a VPC Peering Connection was established. This allows public instances in NovaGrid-1 and NovaGrid-2 to communicate using their private IP addresses, ensuring that traffic between them remains isolated from the public internet. Although the public subnets can route traffic to the internet via an Internet Gateway, all internal communication, especially traffic traversing the peering link, remains private and protected.
+
+With routing tables updated to support bidirectional traffic, the two VPCs can now facilitate cross-VPC service discovery and integration. This setup supports a more resilient, distributed architecture while simplifying service orchestration across both VPCs.
+
+VPC Peering was chosen over AWS Transit Gateway due to its simplicity and cost-effectiveness for a smaller, two-VPC setup. While Transit Gateway provides more advanced features such as centralized routing, inter-region connectivity, and scalability for larger network topologies, it is better suited for more complex environments with multiple VPCs and regions.
 
 <img width="919" height="583" alt="Screenshot 2025-04-24 150942" src="https://github.com/user-attachments/assets/59e3195c-07a4-4789-9f06-c9a18b92f54e" />
 
-VPC peering is deliberately chosen over alternatives like AWS Transit Gateway due to its simpler configuration and lower cost for a two-VPC architecture. It meets performance and connectivity needs without introducing unnecessary complexity.
 
-NovaGrid-2-VPC includes a public subnet (10.2.0.0/24) and a private subnet (10.2.1.0/24). To maintain consistent access control, its security groups and NACLs mirror those of NovaGrid-1. This duplication ensures predictable, uniform security behavior across the network.
-
-Routing tables in both VPCs are updated after peering to enable bidirectional internal traffic, facilitating seamless communication between services, which is critical for shared backend operations and service discovery.
 
 <img width="1129" height="454" alt="Screenshot 2025-07-01 131239" src="https://github.com/user-attachments/assets/7f25796c-e3d5-47a1-b6d3-c44a498e3c46" />
 
