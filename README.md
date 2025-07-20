@@ -4,7 +4,7 @@ As organizations increasingly embrace cloud computing, the demand for secure, sc
 
 The solution implements a layered defense-in-depth approach, integrating security at every level of the network stack. Every design decision, from subnet segmentation to inter-VPC communication, strikes the right balance between security, operational simplicity, and future scalability.
 
-### Key Architectural Design
+## Key Architectural Design
 The architecture is deployed in the AWS North Virginia (us-east-1) region using the CIDR block 10.1.0.0/16, named NovaGrid-1-VPC. It is logically divided into two subnets to separate public-facing and internal resources:
 
 - Public Subnet (10.1.0.0/24): Designed for internet-facing workloads, where EC2 instances are automatically assigned IPv4 addresses and can route through the Internet Gateway for external connectivity.
@@ -13,15 +13,15 @@ The architecture is deployed in the AWS North Virginia (us-east-1) region using 
 
 This separation not only enforces security boundaries but also aligns with the principle of least privilege, reducing the attack surface across the infrastructure.
 
-## 🛡️ Network Security
-### 🔒 Subnet-Level Protection
+### 🛡️ Network Security
+#### 🔒 Subnet-Level Protection
 Network ACLs (NACLs) serve as the first layer of defense:
 - Public Subnet: Allows unrestricted inbound/outbound traffic for external services.
 - Private Subnet: Permits only ICMP IPv4 traffic originating from the public subnet, supporting diagnostics while maintaining isolation.
 
 This stateless layer provides coarse traffic filtering and helps detect misrouted or unauthorized traffic early in the packet flow.
 
-### 🔐 Instance-Level Protection
+#### 🔐 Instance-Level Protection
 Security Groups (SGs) act as a second, stateful layer of control:
 - Public EC2 instances permit HTTP and SSH access to support web applications and remote admin workflows.
 - Private EC2 instances only accept traffic from instances in the public subnet’s security group, ensuring controlled internal access.
