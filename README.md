@@ -1,8 +1,8 @@
 # 🔐 Secure AWS VPC Architecture 
 ## 🌟 Project Summary
-As organizations increasingly embrace cloud computing, the demand for secure, scalable infrastructure is more critical than ever. This project focuses on designing a custom Amazon Virtual Private Cloud (VPC) architecture that combines robust security with cloud-native performance and agility. The aim is to support sensitive workloads by enforcing strict access controls, enabling secure communication, and ensuring long-term scalability.
+As organizations embrace the cloud, secure and scalable infrastructure becomes essential. This project showcases a tailored Amazon Virtual Private Cloud (VPC) architecture that fuses robust security with native cloud performance and elasticity. It is purpose-built to support sensitive workloads by enforcing access controls, securing communications, and ensuring long-term growth.
 
-The solution implements a layered defense-in-depth approach, integrating security at every level of the network stack. Every design decision, from subnet segmentation to inter-VPC communication, strikes the right balance between security, operational simplicity, and future scalability.
+The architecture embraces a defense-in-depth strategy, embedding security across all network layers. Each design element—from subnet segmentation to inter-VPC connectivity—balances operational simplicity with hardened security and scalability.
 
 # Key Architectural Design
 The infrastructure is deployed in the AWS North Virginia (us-east-1) region with the CIDR block 10.1.0.0/16, named NovaGrid-1-VPC. To ensure effective resource segmentation, the VPC is logically divided into two subnets:
@@ -39,11 +39,9 @@ As infrastructure needs evolved, NovaGrid expanded into a dual-VPC architecture 
 
 By distributing workloads across separate VPCs, NovaGrid reinforces both scalability and security. Production, staging, and development environments are now hosted in fully isolated zones, enabling each to scale independently without performance bleed. This separation also serves as a containment boundary—limiting the blast radius of configuration errors or security breaches and helping safeguard mission-critical data and services.
 
-To enable secure, low-latency interconnectivity, a VPC Peering Connection was established between NovaGrid-1 and NovaGrid-2. This setup allows resources—especially those in public subnets—to exchange traffic using private IP addresses, keeping inter-VPC communication encrypted and invisible to the public internet. Bidirectional routing ensures both environments can access internal services reliably, strengthening integration while preserving isolation. Public-facing services continue to use NAT and Internet Gateways for controlled outbound traffic.
+To enable secure, low-latency interconnectivity, a VPC Peering Connection was established between NovaGrid-1 and NovaGrid-2. This setup allows resources—especially those in public subnets—to exchange traffic using private IP addresses, keeping inter-VPC communication encrypted and invisible to the public internet. Bidirectional routing ensures both environments can access internal services reliably, strengthening integration while preserving isolation. 
 
-The decision to use VPC Peering over AWS Transit Gateway was deliberate: peering offers a direct, lightweight solution tailored for a two-VPC architecture. While Transit Gateway shines in complex, multi-VPC or cross-region ecosystems, it introduces additional overhead unnecessary for NovaGrid's current scale. Peering provides just the right balance of simplicity, performance, and cost-effectiveness, with architectural headroom for future growth.
-
-
+The decision to use VPC Peering over AWS Transit Gateway was deliberate as peering offers a direct, lightweight solution tailored for a two-VPC architecture. While Transit Gateway shines in complex, multi-VPC or cross-region ecosystems, it introduces additional overhead unnecessary for NovaGrid's current scale. Peering provides just the right balance of simplicity, performance, and cost-effectiveness, with architectural headroom for future growth.
 
 
 
@@ -52,18 +50,7 @@ The decision to use VPC Peering over AWS Transit Gateway was deliberate: peering
 
 
 
-a second VPC—NovaGrid-2 (10.2.0.0/16), was provisioned to enhance workload separation and support future growth. Mirroring the architecture of NovaGrid-1, it comprises:
-- Public Subnet (10.2.0.0/24) – for internet-facing resources
-- Private Subnet (10.2.1.0/24) – for backend services isolated from public exposure
 
-Both VPCs share consistent security policies, establishing a unified posture across the environment.
-
-This dual-VPC architecture enhances both scalability and security by isolating production, staging, and development workloads across distinct environments. Each VPC can scale independently, ensuring efficient resource use while preventing performance disruptions between environments. At the same time, segregating production from non-production systems limits cross-environment vulnerabilities—containing potential failures or breaches to a single VPC and protecting the integrity of critical services and sensitive data.
-
-
-To facilitate secure, low-latency communication between the VPCs, a VPC Peering Connection was established. This enables instances in public subnets on both sides to exchange traffic using private IP addresses, keeping internal communications shielded from the public internet. Although public subnets can initiate outbound internet traffic, all inter-VPC traffic remains private and encrypted. With bidirectional routing, both VPCs can seamlessly access shared internal resources, enhancing system resilience and integration.
-
-VPC Peering was selected over AWS Transit Gateway to prioritize simplicity and cost efficiency. While Transit Gateway is well-suited for large-scale, multi-VPC or cross-region architectures, VPC Peering delivers a streamlined and agile solution for a two-VPC setup. This choice supports scalable architecture growth while avoiding unnecessary complexity and expense.
 
 <img width="919" height="583" alt="Screenshot 2025-04-24 150942" src="https://github.com/user-attachments/assets/59e3195c-07a4-4789-9f06-c9a18b92f54e" />
 
