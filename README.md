@@ -35,13 +35,14 @@ To test outbound internet access, the curl command `curl https://learn.nextwork.
 <img width="857" height="547" alt="image" src="https://github.com/user-attachments/assets/0582fdf7-d887-4bc7-8a3c-46a7fa7b25a9" />
 
 # 🔄 Inter-VPC Communication and Expansion
-To accommodate growth and support additional workload isolation, a second VPC, NovaGrid-2, was provisioned with the CIDR block 10.2.0.0/16. Like its predecessor, it includes:
-- Public Subnet (10.2.0.0/24): Designed for internet-facing resources.
-- Private Subnet (10.2.1.0/24): Reserved for backend operations.
+As infrastructure needs evolved, a second VPC—NovaGrid-2 (10.2.0.0/16), was provisioned to enhance workload separation and support future growth. Mirroring the architecture of NovaGrid-1, it comprises:
+- Public Subnet (10.2.0.0/24) – for internet-facing resources
+- Private Subnet (10.2.1.0/24) – for backend services isolated from public exposure
 
-This dual-VPC approach enhances scalability, enforces security boundaries, and improves operational transparency. By confining production workloads to NovaGrid-1 and isolating non-production tasks within NovaGrid-2, the design minimizes cross-environment risks. Should a security incident or system failure arise, its impact remains contained to a single VPC.
+Both VPCs share consistent security policies, establishing a unified posture across the environment.
 
-NovaGrid-2 inherits the security posture of NovaGrid-1, ensuring consistent network security controls across both environments.
+This dual-VPC architecture enhances both scalability and security by isolating production, staging, and development workloads across distinct environments. Each VPC can scale independently, ensuring efficient resource use while preventing performance disruptions between environments. At the same time, segregating production from non-production systems limits cross-environment vulnerabilities—containing potential failures or breaches to a single VPC and protecting the integrity of critical services and sensitive data.
+
 
 To facilitate secure, low-latency communication between the VPCs, a VPC Peering Connection was established. This enables instances in public subnets on both sides to exchange traffic using private IP addresses, keeping internal communications shielded from the public internet. Although public subnets can initiate outbound internet traffic, all inter-VPC traffic remains private and encrypted. With bidirectional routing, both VPCs can seamlessly access shared internal resources, enhancing system resilience and integration.
 
