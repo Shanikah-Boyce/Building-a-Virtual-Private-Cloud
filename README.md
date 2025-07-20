@@ -12,14 +12,14 @@ The infrastructure is deployed in the AWS North Virginia (us-east-1) region with
 
 - Private Subnet (10.1.1.0/24): This subnet is dedicated to backend services and does not have direct internet access, ensuring full isolation from the outside world.
 
-This separation supports the principle of least privilege, minimizing the attack surface.
+This design follows the principle of least privilege, minimizing the attack surface and reducing exposure to potential security risks.
 
 ### 🛡️ Network Security
 At the subnet level, Network Access Control Lists (NACLs) provide the first layer of defense:
 - Public Subnet: Allows unrestricted inbound and outbound traffic for external services.
 - Private Subnet: Only permits ICMP IPv4 traffic from the public subnet, enabling diagnostics while maintaining isolation.
 
- Security Groups (SGs) offer stateful, granular control over traffic:
+Security Groups (SGs) offer stateful, granular control over traffic:
 - Public EC2 instances: Allow only HTTP and SSH traffic to support web applications and remote administrator workflows.
 - Private EC2 instances: Accept traffic only from the public subnet’s security group, ensuring controlled internal communication.
 
