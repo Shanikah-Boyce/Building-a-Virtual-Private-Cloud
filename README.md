@@ -26,11 +26,12 @@ Security Groups (SGs) offer stateful, granular control over traffic:
 Combining SGs with NACLs provides a multi-layered security model, reducing the risk of unauthorized access.
 
 ## Connectivity Testing Between EC2 Instances
-Network connectivity between Amazon EC2 instances is validated using ping and curl commands from a public-facing EC2 instance. Successful ICMP echo replies confirm that inbound traffic to the private subnet is permitted by the configured security groups and NACLs, demonstrating internal accessibility.
+Network connectivity between the public and private EC2 instances was validated by running ping and curl commands from the public-facing EC2 instance. Successful ICMP echo replies confirmed that inbound traffic to the private instance was allowed by the configured security groups and NACLs, ensuring internal communication between the two instances was functioning correctly.
 
 <img width="706" height="568" alt="image" src="https://github.com/user-attachments/assets/5b676fea-fe55-4799-91b7-00b05c76e1d0" />
 
-The command curl https://learn.nextwork.org/projects/aws-host-a-website-on-s3 further verifies outbound internet access from the public EC2 instance, confirming the correct setup of the internet gateway, route tables, and the assignment of a public or Elastic IP address.
+To test outbound internet access, the curl command curl https://learn.nextwork.org/projects/aws-host-a-website-on-s3 was executed from the public EC2 instance. This verified that the internet gateway, route tables, and assignment of a public IP or Elastic IP were properly configured, ensuring the public instance could access external resources.
+
 <img width="857" height="547" alt="image" src="https://github.com/user-attachments/assets/0582fdf7-d887-4bc7-8a3c-46a7fa7b25a9" />
 
 
