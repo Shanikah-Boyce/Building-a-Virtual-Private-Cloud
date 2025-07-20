@@ -25,7 +25,7 @@ Security Groups (SGs) offer stateful, granular control over traffic:
 
 Combining SGs with NACLs provides a multi-layered security model, reducing the risk of unauthorized access.
 
-## Connectivity Testing Between EC2 Instances
+# Connectivity Testing Between EC2 Instances
 Network connectivity between the public and private EC2 instances was validated by running ping and curl commands from the public-facing EC2 instance. Successful ICMP echo replies confirmed that inbound traffic to the private instance was allowed by the configured security groups and NACLs, ensuring internal communication between the two instances was functioning correctly.
 
 <img width="706" height="568" alt="image" src="https://github.com/user-attachments/assets/5b676fea-fe55-4799-91b7-00b05c76e1d0" />
