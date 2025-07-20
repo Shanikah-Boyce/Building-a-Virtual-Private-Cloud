@@ -75,10 +75,10 @@ The final configuration minimizes risk exposure, eliminates NAT Gateway overhead
 ## 📈 Monitoring and Visibility
 VPC Flow Logs are enabled on the public subnet and streamed to Amazon CloudWatch. These logs capture accepted and rejected traffic, offering critical insights into network behavior at one-minute intervals.
 
-Using CloudWatch Log Insights, queries are run to identify the top 10 data transfers by byte size.
+Using CloudWatch Log Insights, queries are run to identify the top 10 data transfers by byte size. This analysis confirms that traffic patterns align with expected use cases and helps validate the architecture’s effectiveness.
 <img width="1328" height="528" alt="Screenshot 2025-07-02 123804" src="https://github.com/user-attachments/assets/3ee357e3-7793-4c54-a7cd-a202c8bd4e11" />
 
-This analysis confirms that traffic patterns align with expected use cases and helps validate the architecture’s effectiveness.
+
 <img width="2048" height="953" alt="image" src="https://github.com/user-attachments/assets/6435035b-0119-4aa7-9e7e-795d3c6302c8" />
 
 Monitoring isn’t treated as an afterthought—it is foundational to the design. Visibility into traffic patterns enables easier troubleshooting, compliance reporting, and performance tuning.
