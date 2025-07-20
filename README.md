@@ -7,11 +7,12 @@ The solution implements a layered defense-in-depth approach, integrating securit
 # Key Architectural Design
 The infrastructure is deployed in the AWS North Virginia (us-east-1) region with the CIDR block 10.1.0.0/16, named NovaGrid-1-VPC. To ensure effective resource segmentation, the VPC is logically divided into two subnets:
 
+### VPC Configuration:
 - Public Subnet (10.1.0.0/24): This subnet hosts internet-facing workloads, such as EC2 instances. These instances are automatically assigned public IPv4 addresses, with connectivity routed through the Internet Gateway for external access.
 
 - Private Subnet (10.1.1.0/24): This subnet is dedicated to backend services and does not have direct internet access, ensuring full isolation from the outside world.
 
-This separation supports the principle of least privilege, minimizing the attack surface and reducing exposure to external threats.
+This separation supports the principle of least privilege, minimizing the attack surface.
 
 ### 🛡️ Network Security
 At the subnet level, Network Access Control Lists (NACLs) provide the first layer of defense:
