@@ -4,29 +4,25 @@ As organizations increasingly embrace cloud computing, the demand for secure, sc
 
 The solution implements a layered defense-in-depth approach, integrating security at every level of the network stack. Every design decision, from subnet segmentation to inter-VPC communication, strikes the right balance between security, operational simplicity, and future scalability.
 
-## Key Architectural Design
-The architecture is deployed in the AWS North Virginia (us-east-1) region using the CIDR block 10.1.0.0/16, named NovaGrid-1-VPC. It is logically divided into two subnets to separate public-facing and internal resources:
+# Key Architectural Design
+The infrastructure is deployed in the AWS North Virginia (us-east-1) region with the CIDR block 10.1.0.0/16, named NovaGrid-1-VPC. To ensure effective resource segmentation, the VPC is logically divided into two subnets:
 
-- Public Subnet (10.1.0.0/24): Designed for internet-facing workloads, where EC2 instances are automatically assigned IPv4 addresses and can route through the Internet Gateway for external connectivity.
+- Public Subnet (10.1.0.0/24): This subnet hosts internet-facing workloads, such as EC2 instances. These instances are automatically assigned public IPv4 addresses, with connectivity routed through the Internet Gateway for external access.
 
-- Private Subnet (10.1.1.0/24): Reserved for backend services, with no direct internet access, ensuring complete isolation from external exposure.
+- Private Subnet (10.1.1.0/24): This subnet is dedicated to backend services and does not have direct internet access, ensuring full isolation from the outside world.
 
-This separation not only enforces security boundaries but also aligns with the principle of least privilege, reducing the attack surface across the infrastructure.
+This separation supports the principle of least privilege, minimizing the attack surface and reducing exposure to external threats.
 
 ### 🛡️ Network Security
-#### 🔒 Subnet-Level Protection
-Network ACLs (NACLs) serve as the first layer of defense:
-- Public Subnet: Allows unrestricted inbound/outbound traffic for external services.
-- Private Subnet: Permits only ICMP IPv4 traffic originating from the public subnet, supporting diagnostics while maintaining isolation.
+At the subnet level, Network Access Control Lists (NACLs) provide the first layer of defense:
+- Public Subnet: Allows unrestricted inbound and outbound traffic for external services.
+- Private Subnet: Only permits ICMP IPv4 traffic from the public subnet, enabling diagnostics while maintaining isolation.
 
-This stateless layer provides coarse traffic filtering and helps detect misrouted or unauthorized traffic early in the packet flow.
+ Security Groups (SGs) offer stateful, granular control over traffic:
+- Public EC2 instances: Allow only HTTP and SSH traffic to support web applications and remote administrator workflows.
+- Private EC2 instances: Accept traffic only from the public subnet’s security group, ensuring controlled internal communication.
 
-#### 🔐 Instance-Level Protection
-Security Groups (SGs) act as a second, stateful layer of control:
-- Public EC2 instances permit HTTP and SSH access to support web applications and remote admin workflows.
-- Private EC2 instances only accept traffic from instances in the public subnet’s security group, ensuring controlled internal access.
-
-Combining SGs with NACLs establishes a layered model that reduces the likelihood of accidental exposure or overly permissive access rules.
+Combining SGs with NACLs provides a multi-layered security model, reducing the risk of unauthorized access.
 
 ## Connectivity Testing Between EC2 Instances
 Network connectivity between Amazon EC2 instances is validated using ping and curl commands from a public-facing EC2 instance. Successful ICMP echo replies confirm that inbound traffic to the private subnet is permitted by the configured security groups and NACLs, demonstrating internal accessibility.
