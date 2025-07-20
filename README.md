@@ -31,11 +31,9 @@ Combining SGs with NACLs establishes a layered model that reduces the likelihood
 ## Connectivity Testing Between EC2 Instances
 Network connectivity between Amazon EC2 instances is validated using ping and curl commands from a public-facing EC2 instance. Successful ICMP echo replies confirm that inbound traffic to the private subnet is permitted by the configured security groups and NACLs, demonstrating internal accessibility.
 
-The command curl https://learn.nextwork.org/projects/aws-host-a-website-on-s3 further verifies outbound internet access from the public EC2 instance, confirming the correct setup of the internet gateway, route tables, and the assignment of a public or Elastic IP address.
-
 <img width="706" height="568" alt="image" src="https://github.com/user-attachments/assets/5b676fea-fe55-4799-91b7-00b05c76e1d0" />
 
-
+The command curl https://learn.nextwork.org/projects/aws-host-a-website-on-s3 further verifies outbound internet access from the public EC2 instance, confirming the correct setup of the internet gateway, route tables, and the assignment of a public or Elastic IP address.
 <img width="857" height="547" alt="image" src="https://github.com/user-attachments/assets/0582fdf7-d887-4bc7-8a3c-46a7fa7b25a9" />
 
 
@@ -65,7 +63,7 @@ To enforce a zero-trust model, a strict S3 bucket policy using the aws:SourceVpc
 
 <img width="1204" height="570" alt="Screenshot 2025-04-25 153329" src="https://github.com/user-attachments/assets/3d23ca16-ec38-483f-95b7-0a3ccd090439" />
 
-To test the effectiveness of the security controls, the VPC Endpoint Policy is temporarily modified to deny all access. Since the bucket is only reachable via the gateway, this immediately disables access across all interfaces—AWS CLI, SDKs, and the Console—for workloads in the private subnet. This confirms that the configuration is properly enforced and can be quickly shut down when needed.
+To test the effectiveness of the security controls, the VPC Endpoint Policy is temporarily modified to deny all access. Since the bucket is only reachable via the gateway, this immediately disables access across all interfaces—AWS CLI, SDKs, and the Console, for workloads in the private subnet. This confirms that the configuration is properly enforced and can be quickly shut down when needed.
 
 <img width="1329" height="465" alt="Screenshot 2025-04-25 155454" src="https://github.com/user-attachments/assets/737b325d-ff39-4514-875d-de845b8bb74d" />
 
