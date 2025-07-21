@@ -94,8 +94,3 @@ Still, opportunities for improvement remain. Open SSH access on public EC2 insta
 
 Additionally, expanding VPC Flow Logs to private subnets would improve internal traffic visibility, uncover hidden issues, and bolster network observability. Analyzing this data through Amazon Athena or CloudWatch Logs Insights would provide deeper insight and reinforce governance practices. Together, these enhancements would elevate both the security posture and operational resilience of the environment.
 
-
-### 👁️ Extend Internal Visibility
-Flow Logs are currently enabled only on the public subnet, limiting visibility into internal traffic. This hinders detection of internal anomalies or troubleshooting of access issues.
-
-Extending Flow Logs to private subnets would offer deeper insights into internal activity—surfacing unusual traffic patterns, revealing misrouted packets, and improving network hygiene. This data can also be integrated into tools like CloudWatch Logs Insights or Amazon Athena for advanced monitoring and analytics, supporting more informed decision-making and enhancing operational oversight.
