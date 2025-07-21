@@ -64,11 +64,11 @@ This ensures that only requests originating from the designated VPC Endpoint are
 
 As part of a security validation exercise, the VPC Endpoint policy was temporarily set to deny all access. Since the Amazon S3 bucket is only reachable via the Gateway Endpoint, this action immediately blocked all connectivity, through AWS CLI, SDKs, and the Management Console.
 
-The goal was to confirm that if a threat actor attempted to misuse the endpoint, access could be swiftly and completely revoked. The outcome validated that the configuration enforces the zero-trust model as intended.
-
 <img width="1329" height="465" alt="Screenshot 2025-04-25 155454" src="https://github.com/user-attachments/assets/737b325d-ff39-4514-875d-de845b8bb74d" />
 
 <img width="1346" height="97" alt="Screenshot 2025-04-25 154031" src="https://github.com/user-attachments/assets/68a6a4b2-28c2-48ce-8e1d-4f3d6782f6bb" />
+
+The goal was to confirm that if a threat actor attempted to misuse the endpoint, access could be swiftly and completely revoked. The outcome validated that the configuration enforces the zero-trust model as intended.
 
 The final configuration minimizes risk exposure, eliminates NAT Gateway overhead, and simplifies traffic management, making it a robust solution for securing sensitive workloads in environments with stringent network control requirements.
 
