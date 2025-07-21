@@ -90,6 +90,6 @@ The layered security model combines stateless Network ACLs with stateful Securit
 
 For secure administrative access, EC2 Instance Connect was used in place of traditional SSH. This approach eliminates the need to open port 22 to the internet and ensures that remote access is managed through AWS-managed infrastructure. To further harden access controls, AWS’s published service IP ranges (ip-ranges.json) can be referenced to scope Security Group rules precisely to EC2 Instance Connect endpoints, reinforcing the zero-trust model.
 
-Still, opportunities remain to enhance observability and reduce residual risks. Expanding VPC Flow Logs to private subnets would improve visibility into internal east-west traffic and help uncover misconfigurations. The data collected can continue to be queried through CloudWatch Log Insights or Amazon Athena to deepen governance, anomaly detection, and performance analysis.
+Still, opportunities remain to enhance observability and reduce residual risks. Expanding VPC Flow Logs to private subnets would improve visibility into internal traffic and help uncover misconfigurations. The data collected can continue to be queried through CloudWatch Log Insights or Amazon Athena to deepen governance, anomaly detection, and performance analysis.
 
 With these practices already in place and further refinements on the roadmap, the architecture is well-positioned to support sensitive cloud workloads with strong security, operational control, and long-term scalability.
