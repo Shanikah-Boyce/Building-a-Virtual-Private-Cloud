@@ -83,23 +83,17 @@ Using CloudWatch Log Insights, queries are run to identify the top 10 data trans
 
 Monitoring isn’t treated as an afterthought—it is foundational to the design. Visibility into traffic patterns enables easier troubleshooting, compliance reporting, and performance tuning.
 
-## 🧠 Lessons Learned
-This project demonstrates the effectiveness of layered network security—combining stateless controls at the subnet level (NACLs) with stateful instance-level firewalls (SGs). Careful segmentation between public and private resources establishes clear trust boundaries.
+## Conclusion
+In conclusion, this project demonstrates the importance of a layered security approach and visibility-first design within an AWS VPC environment. By integrating stateless Network ACLs with stateful Security Groups, the architecture effectively reduces the risks associated with misconfigurations and external threats. The clear separation of public and private resources further strengthens trust boundaries and ensures secure, isolated environments.
 
-Another takeaway is the importance of designing for visibility from the start. Having VPC Flow Logs and centralized monitoring speeds up diagnostics and validates assumptions made during the planning stage.
+Proactive observability—established early through VPC Flow Logs and centralized monitoring—proved essential in validating design choices and streamlining issue resolution. These capabilities not only enabled real-time visibility but also empowered teams to detect anomalies quickly and make informed decisions as the infrastructure evolved.
 
-## 🚀 Final Outcome & Key Insights
-The result was a highly secure, scalable AWS VPC architecture with strong monitoring, isolation, and operational clarity:
-- Defined Subnet Strategy: Isolated environments for public and private resources enhance security and simplify access control.
-- Secure S3 Integration: Gateway Endpoints and scoped bucket policies enable private, auditable access to data.
-- Resilient VPC Peering: Supports secure internal communication without public exposure.
-- Layered Security Controls: NACLs and SGs together limit the impact of misconfigurations.
-- Operational Transparency: Monitoring with CloudWatch and Flow Logs delivers real-time visibility into network behavior.
+Key architectural elements, such as a structured subnet layout, private S3 access via Gateway Endpoints, scoped bucket policies, and resilient VPC peering, contributed to a secure and efficient environment. CloudWatch and Flow Logs added valuable insight into network behavior, while the layered security model provided a strong foundation against threats.
 
+Still, opportunities for improvement remain. Open SSH access on public EC2 instances, while convenient, poses a significant security risk. Limiting access to trusted IP ranges and using tools like AWS Lambda and Systems Manager for updates would enhance security without sacrificing manageability. Leveraging AWS’s published IP ranges for EC2 Instance Connect can help enforce precise, scoped access through Security Group rules.
 
-## 🚀 Opportunities for Improvement
-### 🔐 Restrict SSH Access
-To enable EC2 Instance Connect, public EC2 instances currently allow SSH access from any IPv4 address. This setup eliminates the need for manual key management, streamlining access for administrators. However, it also significantly increases the attack surface by exposing port 22 to unrestricted internet traffic. A more secure configuration involves restricting SSH access to trusted IP ranges, particularly those assigned to a bastion host. This helps prevent unauthorized connections and aligns with best practices in cloud security. Identifying the IP ranges used by EC2 Instance Connect and applying them within security group rules strengthens access control. In dynamic environments, automating these IP updates using AWS Lambda and Systems Manager provides a scalable, secure, and compliant solution with minimal manual intervention.
+Additionally, expanding VPC Flow Logs to private subnets would improve internal traffic visibility, uncover hidden issues, and bolster network observability. Analyzing this data through Amazon Athena or CloudWatch Logs Insights would provide deeper insight and reinforce governance practices. Together, these enhancements would elevate both the security posture and operational resilience of the environment.
+
 
 ### 👁️ Extend Internal Visibility
 Flow Logs are currently enabled only on the public subnet, limiting visibility into internal traffic. This hinders detection of internal anomalies or troubleshooting of access issues.
