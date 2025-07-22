@@ -33,7 +33,7 @@ Security Groups (SGs) offer stateful, granular control over traffic:
 
 Combining SGs with NACLs provides a multi-layered security model, reducing the risk of unauthorized access.
 
-# Connectivity Testing Between EC2 Instances
+## Connectivity Testing Between EC2 Instances
 Network connectivity between the public and private EC2 instances was validated by running ping and curl commands from the public-facing EC2 instance. Successful ICMP echo replies confirmed that inbound traffic to the private instance was allowed by the configured security groups and NACLs, ensuring internal communication between the two instances was functioning correctly.
 
 <img src="https://github.com/user-attachments/assets/5b676fea-fe55-4799-91b7-00b05c76e1d0" width="700"/>
@@ -42,9 +42,9 @@ To test outbound internet access, the curl command `curl https://learn.nextwork.
 
 <img src="https://github.com/user-attachments/assets/0582fdf7-d887-4bc7-8a3c-46a7fa7b25a9" width="700"/>
 
-# 🔄 Inter-VPC Communication and Expansion
+## Inter-VPC Communication and Expansion
 <p align="center">
-  <img width="700" height="700" alt="Blank diagram (1)" src="https://github.com/user-attachments/assets/323a0812-739f-4aa0-9237-60fad899020e" />
+  <img width="700" height="700" alt="Peering" src="https://github.com/user-attachments/assets/5439712f-febb-4c49-a056-1ecfdb23bc4f" />
 </p>
 As infrastructure needs evolved, NovaGrid expanded into a dual-VPC architecture with the provisioning of NovaGrid-2 (10.2.0.0/16). 
 <img src="https://github.com/user-attachments/assets/9ecad038-48f2-4efd-94e4-ac6f10a78cba"/>
