@@ -8,7 +8,9 @@ As organizations embrace the cloud, secure and scalable infrastructure becomes e
 The architecture embraces a defense-in-depth strategy, embedding security across all network layers. Each design element, from subnet segmentation to inter-VPC connectivity, balances operational simplicity with hardened security and scalability.
 
 ## Key Architectural Design
-NovaGrid-1 was manually deployed in the AWS North Virginia region (us-east-1) using a CIDR block of 10.1.0.0/16. The entire network infrastructure, including the VPC, subnets, route tables, and Internet Gateway, was built step-by-step through the AWS Management Console. This hands-on approach ensured granular control over each configuration phase. To enhance resource segmentation and optimize traffic flow, the VPC has been logically divided into two subnets:
+NovaGrid-1 was manually deployed in the AWS North Virginia region (us-east-1) using a CIDR block of 10.1.0.0/16. The entire network infrastructure, including the VPC, subnets, route tables, and Internet Gateway, was built step-by-step through the AWS Management Console. This hands-on approach ensured granular control over each configuration phase. 
+
+To enhance resource segmentation and optimize traffic flow, the VPC has been logically divided into two subnets:
 
 <img width="1870" height="1500" alt="NovaGrid-1 (1)" src="https://github.com/user-attachments/assets/92466770-06d3-4bd7-bb3b-6aacc84386a3" />
 
