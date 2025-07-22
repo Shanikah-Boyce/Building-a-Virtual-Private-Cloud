@@ -43,18 +43,24 @@ To test outbound internet access, the curl command `curl https://learn.nextwork.
 <img src="https://github.com/user-attachments/assets/0582fdf7-d887-4bc7-8a3c-46a7fa7b25a9" width="700"/>
 
 ## Inter-VPC Communication and Expansion
+As infrastructure needs evolved, NovaGrid expanded into a dual-VPC architecture with the provisioning of NovaGrid-2 (10.2.0.0/16). 
+<img src="https://github.com/user-attachments/assets/9ecad038-48f2-4efd-94e4-ac6f10a78cba"/>
+
 <p align="center">
   <img width="1850" height="2600" alt="Peering (1)" src="https://github.com/user-attachments/assets/15463940-bdf7-405f-80a9-ba177355f4d8" />
 </p>
-As infrastructure needs evolved, NovaGrid expanded into a dual-VPC architecture with the provisioning of NovaGrid-2 (10.2.0.0/16). 
-<img src="https://github.com/user-attachments/assets/9ecad038-48f2-4efd-94e4-ac6f10a78cba"/>
-This second VPC was designed to support workload separation and long-term scalability while maintaining symmetry with NovaGrid-1. It includes a public subnet (10.2.0.0/24) for internet-facing resources and a private subnet (10.2.1.0/24) for backend services requiring isolation from external exposure.
 
-<img src="https://github.com/user-attachments/assets/59e3195c-07a4-4789-9f06-c9a18b92f54e" width="700"/>
+This second VPC was designed to support workload separation and long-term scalability while maintaining symmetry with NovaGrid-1. It includes a public subnet (10.2.0.0/24) for internet-facing resources and a private subnet (10.2.1.0/24) for backend services requiring isolation from external exposure.
 
 By distributing workloads across separate VPCs, NovaGrid reinforces both scalability and security. Production, staging, and development environments are now hosted in fully isolated zones, enabling each to scale independently without performance bleed. This separation also serves as a containment boundary, limiting the blast radius of configuration errors or security breaches and helping safeguard mission-critical data and services.
 
 To enable secure, low-latency interconnectivity, a VPC Peering Connection was established between NovaGrid-1 and NovaGrid-2. This setup allows resources, especially those in public subnets, to exchange traffic using private IP addresses, keeping inter-VPC communication encrypted and invisible to the public internet. Bidirectional routing ensures both environments can access internal services reliably, strengthening integration while preserving isolation. 
+
+<img src="https://github.com/user-attachments/assets/59e3195c-07a4-4789-9f06-c9a18b92f54e" width="700"/>
+
+
+
+
 
 <img src="https://github.com/user-attachments/assets/7f25796c-e3d5-47a1-b6d3-c44a498e3c46" width="700" />
 <img src="https://github.com/user-attachments/assets/11371ced-ae04-4e7f-b727-fe1ae9907e4a" width="700" />
