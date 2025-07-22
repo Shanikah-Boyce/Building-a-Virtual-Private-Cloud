@@ -55,6 +55,8 @@ The decision to use VPC Peering over AWS Transit Gateway was deliberate as peeri
 
 
 ## ☁️ Private S3 Access
+<img width="1910" height="1220" alt="S3" src="https://github.com/user-attachments/assets/28964f10-47e7-4c4a-be1c-cea8081cd50e" />
+
 For workloads residing in a private subnet, access to Amazon S3 is securely facilitated via a VPC Gateway Endpoint. This setup removes the need for NAT Gateways or public IPs, ensuring that all S3 traffic stays within AWS’s internal network and avoids traversing the public internet.
 
 To implement a zero-trust approach, a restrictive S3 bucket policy is applied using the aws:SourceVpce condition. 
