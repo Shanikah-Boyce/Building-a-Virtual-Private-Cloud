@@ -8,6 +8,8 @@ The architecture embraces a defense-in-depth strategy, embedding security across
 
 # Key Architectural Design
 The infrastructure is deployed in the AWS North Virginia (us-east-1) region with the CIDR block 10.1.0.0/16, named NovaGrid-1-VPC. To ensure effective resource segmentation, the VPC is logically divided into two subnets:
+<img width="1870" height="1500" alt="NovaGrid-1 (1)" src="https://github.com/user-attachments/assets/92466770-06d3-4bd7-bb3b-6aacc84386a3" />
+
 
 ### VPC Configuration:
 - Public Subnet (10.1.0.0/24): This subnet hosts internet-facing workloads, such as EC2 instances. These instances are automatically assigned public IPv4 addresses, with connectivity routed through the Internet Gateway for external access.
