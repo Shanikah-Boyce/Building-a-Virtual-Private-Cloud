@@ -43,7 +43,7 @@ To test outbound internet access, the curl command `curl https://learn.nextwork.
 <img src="https://github.com/user-attachments/assets/0582fdf7-d887-4bc7-8a3c-46a7fa7b25a9" width="700"/>
 
 ## Inter-VPC Communication and Expansion
-As infrastructure needs evolved, NovaGrid expanded into a dual-VPC architecture with the provisioning of NovaGrid-2 (10.2.0.0/16). 
+As NovaGrid’s infrastructure evolved, a dual-VPC architecture was adopted to meet growing operational demands. The introduction of NovaGrid-2, provisioned via the VPC Resource Map and assigned a distinct CIDR block (10.2.0.0/16), marked a strategic step toward improved scalability, enhanced network isolation, and greater architectural flexibility.
 <img src="https://github.com/user-attachments/assets/9ecad038-48f2-4efd-94e4-ac6f10a78cba"/>
 
 This second VPC was designed to support workload separation and long-term scalability while maintaining symmetry with NovaGrid-1. It includes a public subnet (10.2.0.0/24) for internet-facing resources and a private subnet (10.2.1.0/24) for backend services requiring isolation from external exposure.
