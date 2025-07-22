@@ -1,6 +1,6 @@
 # 🔐 Secure AWS VPC Architecture 
 ## 🌟 Project Summary
-As organizations embrace the cloud, secure and scalable infrastructure becomes essential. This project showcases a tailored Amazon Virtual Private Cloud (VPC) architecture that fuses robust security with native cloud performance and elasticity. It is purpose-built to support sensitive workloads by enforcing access controls, securing communications, and ensuring long-term growth.
+As organizations embrace the cloud, secure and scalable infrastructure becomes essential. This project showcases a custom Amazon Virtual Private Cloud (VPC) architecture that fuses robust security with native cloud performance and elasticity. It is purpose-built to support sensitive workloads by enforcing access controls, securing communications, and ensuring long-term growth.
 
 The architecture embraces a defense-in-depth strategy, embedding security across all network layers. Each design element, from subnet segmentation to inter-VPC connectivity, balances operational simplicity with hardened security and scalability.
 <img width="1850" height="3060" alt="Overall VPC (1)" src="https://github.com/user-attachments/assets/9610800b-d732-4473-bfb8-87d88cc5659f" />
