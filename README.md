@@ -89,9 +89,10 @@ The goal was to confirm that if a threat actor attempted to misuse the endpoint,
 
 The final configuration minimizes risk exposure, eliminates NAT Gateway overhead, and simplifies traffic management, making it a robust solution for securing sensitive workloads in environments with stringent network control requirements.
 
-## 📈 Monitoring and Visibility
+## Monitoring and Visibility
 <p align="center">
-  <img width="700" height="700" alt="Blank diagram (1)" src="https://github.com/user-attachments/assets/0615da40-cb5f-43ae-bf0a-2f4e5cb34591" />
+  <img width="1850" height="3060" alt="Overall VPC (2)" src="https://github.com/user-attachments/assets/23249773-7c4d-4124-8dd8-0d2ec689ee9e" />
+
 </p>
 VPC Flow Logs are enabled on the public subnet and streamed to Amazon CloudWatch. These logs capture accepted and rejected traffic, offering critical insights into network behavior at one-minute intervals.
 
