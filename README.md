@@ -44,7 +44,7 @@ To test outbound internet access, the curl command `curl https://learn.nextwork.
 
 ## Inter-VPC Communication and Expansion
 <p align="center">
-  <img width="1850" height="3060" alt="Peering" src="https://github.com/user-attachments/assets/36fbba2c-c596-401f-ba5f-59faf3f87266" />
+  <img width="1850" height="2600" alt="Peering (1)" src="https://github.com/user-attachments/assets/15463940-bdf7-405f-80a9-ba177355f4d8" />
 </p>
 As infrastructure needs evolved, NovaGrid expanded into a dual-VPC architecture with the provisioning of NovaGrid-2 (10.2.0.0/16). 
 <img src="https://github.com/user-attachments/assets/9ecad038-48f2-4efd-94e4-ac6f10a78cba"/>
