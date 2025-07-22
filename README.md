@@ -55,7 +55,7 @@ The decision to use VPC Peering over AWS Transit Gateway was deliberate as peeri
 
 
 ## ☁️ Private S3 Access
-<img width="1910" height="1220" alt="S3" src="https://github.com/user-attachments/assets/28964f10-47e7-4c4a-be1c-cea8081cd50e" />
+<img width="700" height="700" alt="S3" src="https://github.com/user-attachments/assets/28964f10-47e7-4c4a-be1c-cea8081cd50e" />
 
 For workloads residing in a private subnet, access to Amazon S3 is securely facilitated via a VPC Gateway Endpoint. This setup removes the need for NAT Gateways or public IPs, ensuring that all S3 traffic stays within AWS’s internal network and avoids traversing the public internet.
 
@@ -78,6 +78,8 @@ The goal was to confirm that if a threat actor attempted to misuse the endpoint,
 The final configuration minimizes risk exposure, eliminates NAT Gateway overhead, and simplifies traffic management, making it a robust solution for securing sensitive workloads in environments with stringent network control requirements.
 
 ## 📈 Monitoring and Visibility
+<img width="700" height="700" alt="VPC Peering (1)" src="https://github.com/user-attachments/assets/44bcffe0-57b6-4238-96b9-88535266ae19" />
+
 VPC Flow Logs are enabled on the public subnet and streamed to Amazon CloudWatch. These logs capture accepted and rejected traffic, offering critical insights into network behavior at one-minute intervals.
 
 Using CloudWatch Log Insights, queries are run to identify the top 10 data transfers by byte size. This analysis confirms that traffic patterns align with expected use cases and helps validate the architecture’s effectiveness.
