@@ -3,7 +3,8 @@
 As organizations embrace the cloud, secure and scalable infrastructure becomes essential. This project showcases a tailored Amazon Virtual Private Cloud (VPC) architecture that fuses robust security with native cloud performance and elasticity. It is purpose-built to support sensitive workloads by enforcing access controls, securing communications, and ensuring long-term growth.
 
 The architecture embraces a defense-in-depth strategy, embedding security across all network layers. Each design element, from subnet segmentation to inter-VPC connectivity, balances operational simplicity with hardened security and scalability.
-<img width="700" height="700" alt="Overall VPC (1)" src="https://github.com/user-attachments/assets/3f0147c0-4a58-40cc-af65-0367429e3f06" />
+<img width="1850" height="3060" alt="Overall VPC (1)" src="https://github.com/user-attachments/assets/9610800b-d732-4473-bfb8-87d88cc5659f" />
+
 
 # Key Architectural Design
 The infrastructure is deployed in the AWS North Virginia (us-east-1) region with the CIDR block 10.1.0.0/16, named NovaGrid-1-VPC. To ensure effective resource segmentation, the VPC is logically divided into two subnets:
