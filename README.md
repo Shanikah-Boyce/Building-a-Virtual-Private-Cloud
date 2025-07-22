@@ -80,14 +80,15 @@ The final configuration minimizes risk exposure, eliminates NAT Gateway overhead
 ## 📈 Monitoring and Visibility
 <img width="700" height="700" alt="VPC Peering (1)" src="https://github.com/user-attachments/assets/44bcffe0-57b6-4238-96b9-88535266ae19" />
 
+<img width="1870" height="2060" alt="VPC Peering (2)" src="https://github.com/user-attachments/assets/0615da40-cb5f-43ae-bf0a-2f4e5cb34591" />
+
+
 VPC Flow Logs are enabled on the public subnet and streamed to Amazon CloudWatch. These logs capture accepted and rejected traffic, offering critical insights into network behavior at one-minute intervals.
 
 Using CloudWatch Log Insights, queries are run to identify the top 10 data transfers by byte size. This analysis confirms that traffic patterns align with expected use cases and helps validate the architecture’s effectiveness.
-<img width="1328" height="528" alt="Screenshot 2025-07-02 123804" src="https://github.com/user-attachments/assets/3ee357e3-7793-4c54-a7cd-a202c8bd4e11" />
-
-
-<img width="2048" height="953" alt="image" src="https://github.com/user-attachments/assets/6435035b-0119-4aa7-9e7e-795d3c6302c8" />
-
+<p align="center">
+  <img width="700" height="700" alt="Blank diagram (1)" src="https://github.com/user-attachments/assets/6435035b-0119-4aa7-9e7e-795d3c6302c8" />
+</p>
 Monitoring isn’t treated as an afterthought—it is foundational to the design. Visibility into traffic patterns enables easier troubleshooting, compliance reporting, and performance tuning.
 
 ## Conclusion
