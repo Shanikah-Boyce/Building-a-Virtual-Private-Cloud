@@ -59,7 +59,10 @@ To enable secure, low-latency communication between environments, a VPC Peering 
 
 <img src="https://github.com/user-attachments/assets/59e3195c-07a4-4789-9f06-c9a18b92f54e" width="700"/>
 
-This setup allows resources, especially those in public subnets, to exchange traffic using their private IP addresses, keeping inter-VPC communication encrypted and invisible to the public internet. Bidirectional routing ensures both VPCs can reliably access internal services while preserving isolation. 
+This setup allows resources, especially those in public subnets, to exchange traffic using their private IP addresses, keeping inter-VPC communication encrypted and invisible to the public internet. 
+<img width="755" height="519" alt="image" src="https://github.com/user-attachments/assets/83b7a01a-9d2f-47c4-9fa0-59b5d64b646d" />
+
+Bidirectional routing ensures both VPCs can reliably access internal services while preserving isolation. 
 
 <img src="https://github.com/user-attachments/assets/7f25796c-e3d5-47a1-b6d3-c44a498e3c46" width="700" />
 <img src="https://github.com/user-attachments/assets/11371ced-ae04-4e7f-b727-fe1ae9907e4a" width="700" />
